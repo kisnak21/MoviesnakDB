@@ -1,52 +1,58 @@
-$('.search-button').on('click', function(){
+/*tombol search film awal */
+const searchButton = document.querySelector('.search-button');
+searchButton.addEventListener('click', function () {
 
-    $.ajax({
-        url: 'http://www.omdbapi.com/?apikey=19177861&s=' + $('.input-keyword').val(),
-        success: results => {
-    
-            const film = results.Search;
+    const inputKeyword = document.querySelector('.input-keyword');
+    fetch('http://www.omdbapi.com/?apikey=19177861&s=' + inputKeyword.value)
+        .then(
+            response => response.json()
+        )
+        .then(response => {
+            const film = response.Search;
             let cards = '';
-    
-            film.forEach(f => {
-                cards += showCardMovie(f);
-            });
-            $('.movie-container').html(cards);
-    
-            //tombol info di klik
-            $('.info-button').on('click', function() {
-                $.ajax({
-                    url: 'http://www.omdbapi.com/?apikey=19177861&=&i=' + $(this).data('imdbid'),
-                    success: f => {
-                        const movieDetail = showInfoMovie(f);
-            $('.modal-body').html(movieDetail);
-                    },
-                    error: (e) => {
-                        console.log(e.responseText);
-                    }
+            film.forEach(f => cards += showCardMovie(f));
+
+            const movieContainer = document.querySelector('.movie-container');
+            movieContainer.innerHTML = cards;
+            /*tombol search film akhir */
+
+            /*tombol about film awal */
+            const modalInfoFilm = document.querySelectorAll('.info-button');
+            modalInfoFilm.forEach(tombol => {
+                tombol.addEventListener('click', function () {
+                    const imdbid = this.dataset.imdbid;
+                    fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
+                        .then(
+                            response => response.json()
+                        )
+                        .then(f => {
+                            const infoMovie = showInfoMovie(f);
+                            const modalBody = document.querySelector('.modal-body');
+                            modalBody.innerHTML = infoMovie;
+                        });
                 });
             });
-    
-        },
-        error: (e) => {
-            console.log(e.responseText);
-        }
-    });
-});
+            /*tombol search film awal */
+        });
+})
 
+/*fungsi card film awal */
 function showCardMovie(f) {
-    return `<div class="col-md-3 my-4">
+    return `<div class="col-md-3 my-3">
             <div class="card"">
                 <img src="${f.Poster}" class="card-img-top">
                 <div class="card-body">
                 <h5 class="card-title">${f.Title}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${f.Year}</h6>
-                <a href="#" class="btn btn-primary info-button" data-bs-toggle="modal" data-bs-target="#detailMovie" data-imdbid="${f.imdbID}">Tentang Film</a>
+                <a href="#" class="btn btn-secondary info-button" data-bs-toggle="modal" data-bs-target="#detailMovie" data-imdbid="${f.imdbID}">About Movie</a>
                 </div>
             </div>
         </div>
         </div>`
 }
+/*fungsi card film akhir */
 
+/*fungsi modal film awal */
 function showInfoMovie(f) {
     return `<div class="container-fluid">
             <div class="row">
@@ -55,13 +61,18 @@ function showInfoMovie(f) {
             </div>
             <div class="col-md">
                 <ul class="list-group">
-                <li class="list-group-item"><h4>${f.Title} (${f.Year})</h4></li>
+                <li class="list-group-item"><h4>${f.Title}</h4></li>
+                <li class="list-group-item"><strong>Released: ${f.Released}</strong></li>
+                <li class="list-group-item"><strong>Genre: ${f.Genre}</strong></li>
+                <li class="list-group-item"><strong>Runtime: ${f.Runtime}</strong></li>
                 <li class="list-group-item"><strong>Director: ${f.Director}</strong></li>
-                <li class="list-group-item"><strong>Actors: ${f.Actors}</strong></li>
-                <li class="list-group-item"><strong>Writer: ${f.Writer}</strong></li>
+                <li class="list-group-item"><strong>Stars: ${f.Actors}</strong></li>
+                <li class="list-group-item"><strong>Writers: ${f.Writer}</strong></li>
+                
                 <li class="list-group-item"><strong>Synopsis:</strong> <br>${f.Plot}</li>
                 </ul>
             </div>
             </div>
         </div>`
 }
+/*fungsi modal film akhir */
