@@ -1,4 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 *, html, body {
     margin: 0;
     padding: 0;
+}
+
+body {
+    background-image: url('https://images.pexels.com/photos/7991582/pexels-photo-7991582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    color: white;
+    font-family: 'Bungee Spice', cursive;
 }
