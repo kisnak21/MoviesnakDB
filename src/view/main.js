@@ -1,42 +1,6 @@
-//     /*tombol search film awal */
-// const searchButton = document.querySelector('.search-button');
-// searchButton.addEventListener('click', function () {
+const main = () => {
 
-//     const inputKeyword = document.querySelector('.input-keyword');
-//     fetch('http://www.omdbapi.com/?apikey=19177861&s=' + inputKeyword.value)
-//         .then(
-//             response => response.json()
-//         )
-//         .then(response => {
-//             const film = response.Search;
-//             let cards = '';
-//             film.forEach(f => cards += showCardMovie(f));
-
-//             const movieContainer = document.querySelector('.movie-container');
-//             movieContainer.innerHTML = cards;
-//             /*tombol search film akhir */
-
-//             /*tombol about film awal */
-//             const modalInfoFilm = document.querySelectorAll('.info-button');
-//             modalInfoFilm.forEach(tombol => {
-//                 tombol.addEventListener('click', function () {
-//                     const imdbid = this.dataset.imdbid;
-//                     fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
-//                         .then(
-//                             response => response.json()
-//                         )
-//                         .then(f => {
-//                             const infoMovie = showInfoMovie(f);
-//                             const modalBody = document.querySelector('.modal-body');
-//                             modalBody.innerHTML = infoMovie;
-//                         });
-//                 });
-//             });
-//             /*tombol search film awal */
-//         });
-// })
-
-const searchButton = document.querySelector('.search-button');
+    const searchButton = document.querySelector('.search-button');
 searchButton.addEventListener('click', async function () {
     const inputKeyword = document.querySelector('.input-keyword');
     const film = await getDataFilm(inputKeyword.value);
@@ -125,3 +89,6 @@ function showInfoMovie(f) {
         </div>`
 }
 /*fungsi modal film akhir */
+}
+
+export default main;
