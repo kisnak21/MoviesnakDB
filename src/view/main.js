@@ -1,7 +1,7 @@
 const main = () => {
 
     const searchButton = document.querySelector('.search-button');
-searchButton.addEventListener('click', async function () {
+    searchButton.addEventListener('click', async function () {
     const inputKeyword = document.querySelector('.input-keyword');
     const film = await getDataFilm(inputKeyword.value);
     updateTampilan(film);
