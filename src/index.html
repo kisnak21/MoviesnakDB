@@ -1,57 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Moviesnak</title>
-  </head>
-  <body>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col">
-                <h1>Moviesnak DB</h1>
-            </div>
-        </div>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Moviesnak</title>
+    </head>
+    <body>
 
-        <div class="row">
-          <div class="col-md-8">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control input-keyword" placeholder="Find Your Favourite Movie">
-              <button class="btn btn-primary search-button" type="button" id="button-addon2">Search</button>
-            </div>
-          </div>
-        </div>
+        <header-app></header-app>
 
-        <div class="row movie-container"></div>
-            
-    </div>
-
-    <!-- Modal -->
-<div class="modal fade" id="detailMovie" tabindex="-1" aria-labelledby="detailMovieLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailMovieLabel">Detail Movie</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="card text-center" style="background-color: brown;">
-  <div class="card-body" style="color: white;">
-    <h5 class="card-title">About</h5>
-    <p class="card-text">This is a website where you can find all your favorite movies. <br> I made this website as a final project Belajar Fundamental Front-End Web Development at Dicoding Academy</p>
-  </div>
-  <div class="card-footer">
-    Made with love 
-  </div>
-</div>
-  </body>
+        <!-- Modal -->
+        <detail-movie></detail-movie>
+        <!-- Footer -->
+        <app-footer></app-footer>
+        
+    </body>
 </html>
