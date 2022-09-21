@@ -7,7 +7,6 @@ const main = () => {
     updateTampilan(film);
 });
 
-//event binding
 document.addEventListener('click', async function(e){
     if (e.target.classList.contains('info-button')) {
         const imdbid = e.target.dataset.imdbid;
@@ -35,7 +34,7 @@ function updateTampilanDetail(f) {
 function getDataFilm(keyword) {
     return fetch('http://www.omdbapi.com/?apikey=19177861&s=' + keyword)
     .then(response => response.json())
-    .then(response => response.Search);
+    .then(response => response.Search)
 }
 /*fungsi get film */
 
@@ -90,5 +89,4 @@ function showInfoMovie(f) {
 }
 /*fungsi modal film akhir */
 }
-
 export default main;
