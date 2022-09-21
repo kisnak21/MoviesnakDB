@@ -16,7 +16,7 @@ document.addEventListener('click', async function(e){
 });
 
 /*fungsi info movie */
-function getInfoMovie(imdbid){
+const getInfoMovie = imdbid =>{
     return fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
     .then(response => response.json())
     .then(f => f);
@@ -24,14 +24,14 @@ function getInfoMovie(imdbid){
 }
 /*fungsi info movie */
 
-function updateTampilanDetail(f) {
+ const updateTampilanDetail = f => {
     const infoMovie = showInfoMovie(f);
     const modalBody = document.querySelector('.modal-body');
     modalBody.innerHTML = infoMovie;
 }
 
 /*fungsi get film */
-function getDataFilm(keyword) {
+const getDataFilm = keyword => {
     return fetch('http://www.omdbapi.com/?apikey=19177861&s=' + keyword)
     .then(response => response.json())
     .then(response => response.Search)
@@ -39,7 +39,7 @@ function getDataFilm(keyword) {
 /*fungsi get film */
 
 /*fungsi update tampilan awal */
-function updateTampilan(film) {
+const updateTampilan = film => {
     let cards = '';
     film.forEach(f => cards += showCardMovie(f));
     
@@ -49,7 +49,7 @@ function updateTampilan(film) {
 /*fungsi update tampilan akhir */
 
 /*fungsi card film awal */
-function showCardMovie(f) {
+const showCardMovie = f => {
     return `<div class="col-md-3 my-3">
             <div class="card"">
                 <img src="${f.Poster}" class="card-img-top">
@@ -65,7 +65,7 @@ function showCardMovie(f) {
 /*fungsi card film akhir */
 
 /*fungsi modal film awal */
-function showInfoMovie(f) {
+const showInfoMovie = f => {
     return `<div class="container-fluid">
             <div class="row">
             <div class="col-md-3">
