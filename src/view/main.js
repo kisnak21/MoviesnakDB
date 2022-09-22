@@ -22,7 +22,7 @@ document.addEventListener('click', async (e) => {
 const loader = document.querySelector("#loading");
 
 // showing loading
-function displayLoading() {
+const displayLoading = () => {
     loader.classList.add("display");
     // to stop loading after some time
     setTimeout(() => {
@@ -31,8 +31,23 @@ function displayLoading() {
 }
 
 // hiding loading 
-function hideLoading() {
+const hideLoading = () => {
     loader.classList.remove("display");
+}
+
+/*fungsi info movie */
+const getInfoMovie = imdbid =>{
+    return fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
+    .then(response => response.json())
+    .then(f => f);
+    
+}
+/*fungsi info movie */
+
+ const updateTampilanDetail = f => {
+    const infoMovie = showInfoMovie(f);
+    const modalBody = document.querySelector('.modal-body');
+    modalBody.innerHTML = infoMovie;
 }
 
 /*fungsi get film */
