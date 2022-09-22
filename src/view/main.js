@@ -1,13 +1,15 @@
 const main = () => {
 
     const searchButton = document.querySelector('.search-button');
-    searchButton.addEventListener('click', async function () {
+    searchButton.addEventListener('click', async () => {
+    displayLoading();
     const inputKeyword = document.querySelector('.input-keyword');
     const film = await getDataFilm(inputKeyword.value);
     updateTampilan(film);
+    hideLoading();
 });
 
-document.addEventListener('click', async function(e){
+document.addEventListener('click', async (e) => {
     if (e.target.classList.contains('info-button')) {
         const imdbid = e.target.dataset.imdbid;
         const infoMovie = await getInfoMovie(imdbid);
@@ -15,19 +17,22 @@ document.addEventListener('click', async function(e){
     }
 });
 
-/*fungsi info movie */
-const getInfoMovie = imdbid =>{
-    return fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
-    .then(response => response.json())
-    .then(f => f);
-    
-}
-/*fungsi info movie */
+/*display loading */
+// selecting loading div
+const loader = document.querySelector("#loading");
 
- const updateTampilanDetail = f => {
-    const infoMovie = showInfoMovie(f);
-    const modalBody = document.querySelector('.modal-body');
-    modalBody.innerHTML = infoMovie;
+// showing loading
+function displayLoading() {
+    loader.classList.add("display");
+    // to stop loading after some time
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 5000);
+}
+
+// hiding loading 
+function hideLoading() {
+    loader.classList.remove("display");
 }
 
 /*fungsi get film */
