@@ -1,10 +1,10 @@
 class DetailMovie extends HTMLElement {
-    connectedCallback() {
-        this.render();
-    }
+  connectedCallback() {
+    this.render();
+  }
 
-    render() {
-        this.innerHTML = `<div class="modal fade" id="detailMovie" tabindex="-1" aria-labelledby="detailMovieLabel" aria-hidden="true">
+  render() {
+    this.innerHTML = `<div class="modal fade" id="detailMovie" tabindex="-1" aria-labelledby="detailMovieLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -20,7 +20,7 @@ class DetailMovie extends HTMLElement {
                             </div>
                             </div>
                         </div>`;
-    }
+  }
 }
 
-customElements.define('detail-movie', DetailMovie);
+customElements.define("detail-movie", DetailMovie);

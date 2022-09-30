@@ -1,10 +1,10 @@
 class HeaderApp extends HTMLElement {
-    connectedCallback() {
-        this.render()
-    }
+  connectedCallback() {
+    this.render();
+  }
 
-    render() {
-        this.innerHTML = `<div class="container">
+  render() {
+    this.innerHTML = `<div class="container">
                             <div class="row mt-5">
                                 <div class="col">
                                     <h1>Moviesnak DB</h1>
@@ -23,7 +23,7 @@ class HeaderApp extends HTMLElement {
                             <div class="row movie-container"></div>
                                 
                         </div>`;
-    }
+  }
 }
 
-customElements.define('header-app', HeaderApp);
+customElements.define("header-app", HeaderApp);

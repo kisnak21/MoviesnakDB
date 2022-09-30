@@ -1,75 +1,72 @@
 const main = () => {
-
-    const searchButton = document.querySelector('.search-button');
-    searchButton.addEventListener('click', async () => {
+  const searchButton = document.querySelector(".search-button");
+  searchButton.addEventListener("click", async () => {
     displayLoading();
-    const inputKeyword = document.querySelector('.input-keyword');
+    const inputKeyword = document.querySelector(".input-keyword");
     const film = await getDataFilm(inputKeyword.value);
     updateTampilan(film);
     hideLoading();
-});
+  });
 
-document.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('info-button')) {
-        const imdbid = e.target.dataset.imdbid;
-        const infoMovie = await getInfoMovie(imdbid);
-        updateTampilanDetail(infoMovie);
+  document.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("info-button")) {
+      const imdbid = e.target.dataset.imdbid;
+      const infoMovie = await getInfoMovie(imdbid);
+      updateTampilanDetail(infoMovie);
     }
-});
+  });
 
-/*display loading */
-// selecting loading div
-const loader = document.querySelector("#loading");
+  /*display loading */
+  const loader = document.querySelector("#loading");
 
-// showing loading
-const displayLoading = () => {
+  // showing loading
+  const displayLoading = () => {
     loader.classList.add("display");
     // to stop loading after some time
     setTimeout(() => {
-        loader.classList.remove("display");
+      loader.classList.remove("display");
     }, 5000);
-}
+  };
 
-// hiding loading 
-const hideLoading = () => {
+  // hiding loading
+  const hideLoading = () => {
     loader.classList.remove("display");
-}
+  };
 
-/*fungsi info movie */
-const getInfoMovie = imdbid =>{
-    return fetch('http://www.omdbapi.com/?apikey=19177861&=&i=' + imdbid)
-    .then(response => response.json())
-    .then(f => f);
-    
-}
-/*fungsi info movie */
+  /*fungsi info movie */
+  const getInfoMovie = (imdbid) => {
+    return fetch("http://www.omdbapi.com/?apikey=19177861&=&i=" + imdbid)
+      .then((response) => response.json())
+      .then((f) => f);
+  };
+  /*fungsi info movie */
 
- const updateTampilanDetail = f => {
+  const updateTampilanDetail = (f) => {
     const infoMovie = showInfoMovie(f);
-    const modalBody = document.querySelector('.modal-body');
+    const modalBody = document.querySelector(".modal-body");
     modalBody.innerHTML = infoMovie;
-}
+  };
 
-/*fungsi get film */
-const getDataFilm = keyword => {
-    return fetch('http://www.omdbapi.com/?apikey=19177861&s=' + keyword)
-    .then(response => response.json())
-    .then(response => response.Search)
-}
-/*fungsi get film */
+  /*fungsi get film */
+  const getDataFilm = (keyword) => {
+    return fetch("http://www.omdbapi.com/?apikey=19177861&s=" + keyword)
+      .then((response) => response.json())
+      .then((response) => response.Search);
+  };
+  /*fungsi get film */
 
-/*fungsi update tampilan awal */
-const updateTampilan = film => {
-    let cards = '';
-    film.forEach(f => cards += showCardMovie(f));
-    
-    const movieContainer = document.querySelector('.movie-container');
+  /*fungsi update tampilan awal */
+  const updateTampilan = (film) => {
+    let cards = "";
+    film.forEach((f) => (cards += showCardMovie(f)));
+
+    const movieContainer = document.querySelector(".movie-container");
     movieContainer.innerHTML = cards;
-}
-/*fungsi update tampilan akhir */
+  };
+  /*fungsi update tampilan akhir */
 
-/*fungsi card film awal */
-const showCardMovie = f => {
+  /*fungsi card film awal */
+  const showCardMovie = (f) => {
     return `<div class="col-md-3 my-3">
             <div class="card"">
                 <img src="${f.Poster}" class="card-img-top">
@@ -80,12 +77,12 @@ const showCardMovie = f => {
                 </div>
             </div>
         </div>
-        </div>`
-}
-/*fungsi card film akhir */
+        </div>`;
+  };
+  /*fungsi card film akhir */
 
-/*fungsi modal film awal */
-const showInfoMovie = f => {
+  /*fungsi modal film awal */
+  const showInfoMovie = (f) => {
     return `<div class="container-fluid">
             <div class="row">
             <div class="col-md-3">
@@ -105,8 +102,8 @@ const showInfoMovie = f => {
                 </ul>
             </div>
             </div>
-        </div>`
-}
-/*fungsi modal film akhir */
-}
+        </div>`;
+  };
+  /*fungsi modal film akhir */
+};
 export default main;
